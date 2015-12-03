@@ -7,7 +7,7 @@
 </style>
 <?php
 $timkiem =$_POST["timkiem"];
-$sql ="select * from sanpham where Tensanpham like '%$timkiem%' ";
+$sql ="select * from sanpham where Tensanpham like '$timkiem' ";
 $arr = array("timkiem"=>$timkiem);
 $kq = $b->select($sql, $arr);
 if($timkiem==null)
