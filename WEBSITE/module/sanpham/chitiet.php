@@ -1,3 +1,4 @@
+
 <script type="text/javascript" src="jq/elevatezoom-master/jquery.elevateZoom-3.0.8.min.js"></script>
 <script type="text/javascript" src="jq/elevatezoom-master/elevatezoom.jquery.json"></script>
 <script type="text/javascript" src="jq/elevatezoom-master/jquery-1.8.3.min.js"></script>
@@ -20,11 +21,26 @@ foreach($arr as $r)
 	
 	<div id="chitietsanpham" >
     	<div id="chitiet">
-		
+		<form action="index.php" method="get">
+        <input type="hidden" name="mod" value="giohang" />
+        <input type="hidden" name="ac" value="add" />
             <div id="ten"><?php echo $r["Tensanpham"]; ?></div>
             <div id="ma">Mã sản phẩm:<?php echo $r["Masanpham"]; ?></div><hr />
             <?php echo $r["chitiet"]; ?>
-            <div id="gia"> <?php echo $r["Dongia"];?></div><hr />
+            <div id="gia">Giá: 
+			<?php if($r["GiaKhuyenMai"]!=0)
+			{
+				?><b style="text-decoration:line-through"><?php echo number_format($r["Dongia"],3);?> đồng</b><hr /><?php
+			}
+				  else echo number_format($r["Dongia"],3);?> đồng
+			</div>
+            
+            
+            <div id="gia">
+				<?php if($r["GiaKhuyenMai"]!=0) 
+				{
+					?>Giá giảm: <?php echo number_format($r["GiaKhuyenMai"],3);?> đồng<?php 
+				} ?></div>
             <div id="sl">
                 Số lượng đặt mua:<select name="soluong">
                 <option>1</option>
@@ -41,13 +57,13 @@ foreach($arr as $r)
             </div><hr />
             
             <div id="button">
-            <form action="module/sanpham/thanhtoan.php" method="post" >
-            <input type="submit" name="muahang" value="Mua Hang" />
+           <!-- <form action="index.php?mod=thanhtoan" method="post" >-->
+           
             <input type="hidden" name="masanpham" value="<?php echo $r["Masanpham"];?>"><br/>
+          
+            <input type="submit" name="giohang" value="Thêm vào giỏ hàng"/>
             </form>
-            <form>
-            <input type="submit" name="datvaogiohang" value="Dat vao gio hang"/>
-            </form>
+            
             </div><br /><hr />
             <div id="thongtin">
             <p>Gọi đặt mua ngay TPHCM: <b>096 3235 371</b> hoặc <b>094 9200 084</b> | Bình Định: <b>(0566) 280 846</b></p>
@@ -68,7 +84,7 @@ foreach($arr as $r)
             	<div id="anh">
                 <img src="<?php echo $s['Hinhanh'];?>" width="100%" height="100px"  />
                 </div>
-                <div><a href="#"><?php echo $s['Tensanpham']; ?></a> </div>
+                <div><a href="index.php?mod=chitiet&Masanpham=<?php echo $s["Masanpham"] ?>"><?php echo $s['Tensanpham']; ?></a> </div>
             <?php
 			}
 			?>
@@ -97,6 +113,7 @@ foreach($arr as $r)
 #ten{ width:60%; height:10%; text-align:left; font-size:24px; color:#003;}
 #gia{ width:60%; height:10%; text-align:left; font-size:24px; color:#F00;}
 #thongtin{margin-left:2%; margin-top:5px; margin-bottom:5px;}
+
 </style>
 <script>
     $('#zoom_01').elevateZoom({

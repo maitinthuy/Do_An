@@ -1,3 +1,11 @@
+<?php
+if(!isset($_SESSION)) session_start();//khởi động session
+define("BASE_URL", "http://localhost:8080/WEBSITE");//khởi tạo một biến cố định có tên BASE_URL tương đương http://localhost:8080/WEBSITE
+include "class/b.class.php";//vì gần như tất cả các file đều được nhúng vào index nên gọi cả 2 file class vô 1 lần trong index, những file chỉ cần sử dụng mà k cần gọi
+include "class/gh.class.php";
+$b = new B();
+$cart = new GH();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,12 +16,9 @@
 <script type="text/javascript" src="jq/js/jssor.slider.min.js"></script>
 <script type="text/javascript" src="jq/js/jssor.slider.mini.js"></script>
 
-<title>Untitled Document</title>
+<title>Space</title>
 </head>
-<?php
-include "class/b.class.php";
-$b = new B();
-?>
+
 
 <body>
   <div id="menu1">
@@ -65,15 +70,7 @@ $b = new B();
 			</div>
         </div>
    
-  <div class="h_icon">
-		<ul class="icon1 sub-icon1">
-			<li><a class="active-icon c1" href="#"></a>
-				<ul class="sub-icon1 list">
-					<li><h3>Giỏ hàng rỗng</h3><a href=""></a></li>
-				</ul>
-			</li>
-		</ul>
-		</div>
+  <div id="cart"><a href="?mod=giohang">Giỏ Hàng(<?php echo  $cart->getNumItem(); ?>)</a></div>
         
   	
     </div>          
@@ -99,7 +96,8 @@ $b = new B();
     </div>
     <div id="footer" style="width:100%; height:70px; margin:auto; background-color:#00A69B; line-height:30px;">
 <p>CopyRight@ Phan Thị Thanh Mai</p>
-Số xxx Cao Lỗ, Phường 4, Quận 8, TP.Hồ Chí Minh.	
+Số xxx Cao Lỗ, Phường 4, Quận 8, TP.Hồ Chí Minh.
+	
 </div>
 </div>
 </body>

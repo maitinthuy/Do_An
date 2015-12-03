@@ -7,16 +7,15 @@
 </head>
 
 <body>
-
 <?php
 
 $arr = $b->select("select * from loaisanpham order by MaLoai asc");
 foreach($arr as $r)
 {
 ?>
-     <div id="tenloai"><a href="#" style="color:#000;  font-size:30px;"><?php echo $r["TenLoai"];?> </a></br></div>     
+          
        <?php
-			 	$arr1 = $b->select("select * from sanpham  where MaLoai='$r[MaLoai]' order by MaLoai desc limit 0,3");
+			 	$arr1 = $b->select("select * from sanpham  where MaLoai='$r[MaLoai]' order by MaLoai desc limit 0,1");
 				foreach($arr1 as $r1)
 				{
 				?>
@@ -32,9 +31,9 @@ foreach($arr as $r)
      <?php 
 				}
 				?>
-     
-            
-</div>
+ 
+  
+
 
 
     <div id="tintuctinkhuyenmai" >
